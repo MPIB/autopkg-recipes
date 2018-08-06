@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Description</key>
+    <string>The TeXworks project is an effort to build a simple TeX front-end program (working environment) that will be available for all today's major desktop operating systems—in particular, MS Windows (XP/Vista/7), typical GNU/Linux distros and other X11-based systems, as well as Mac OS X. It is deliberately modeled on Dick Koch's award-winning TeXShop for Mac OS X, which is credited with a resurgence of TeX usage on the Mac platform.
+    </string>
+    <key>Identifier</key>
+    <string>com.github.mpib.texworks</string>
+    <key>Input</key>
+    <dict>
+        <key>INCLUDE_PRERELEASES</key>
+        <string>False</string>
+        <key>NAME</key>
+        <string>TeXworks</string>
+        <key>MUNKI_CATALOG</key>
+        <string>testing</string>
+        <key>MUNKI_CATEGORY</key>
+        <string>Scientific Writing</string>
+        <key>MUNKI_DEVELOPER</key>
+        <string>Jonathan Kew, Stefan Löffler</string>
+        <key>MUNKI_REPO_SUBDIR</key>
+        <string>apps/</string>
+    </dict>
+    <key>MinimumVersion</key>
+    <string>0.5.0</string>
+    <key>Process</key>
+    <array>
+        <dict>
+            <key>Processor</key>
+            <string>GitHubReleasesInfoProvider</string>
+            <key>Arguments</key>
+            <dict>
+                <key>asset_regex</key>
+                <string>^TeXworks-osx-.*\.dmg</string>
+                <key>github_repo</key>
+                <string>TeXworks/texworks</string>
+                <key>include_prereleases</key>
+                <string>%INCLUDE_PRERELEASES%</string>
+            </dict>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>URLDownloader</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>EndOfCheckPhase</string>
+        </dict>
+        <dict>
+            <key>Processor</key>
+            <string>MunkiImporter</string>
+            <key>Arguments</key>
+            <dict>
+                <key>repo_subdirectory</key>
+                <string>%MUNKI_REPO_SUBDIR%</string>
+                <key>pkg_path</key>
+                <string>%pathname%</string>
+                <key>pkginfo</key>
+                <dict>
+                    <key>catalogs</key>
+                    <array>
+                        <string>%MUNKI_CATALOG%</string>
+                    </array>
+                    <key>category</key>
+                    <string>%MUNKI_CATEGORY%</string>
+                    <key>description</key>
+                    <string>The TeXworks project is an effort to build a simple TeX front-end program (working environment) that will be available for all today's major desktop operating systems—in particular, MS Windows (XP/Vista/7), typical GNU/Linux distros and other X11-based systems, as well as Mac OS X. It is deliberately modeled on Dick Koch's award-winning TeXShop for Mac OS X, which is credited with a resurgence of TeX usage on the Mac platform.
+                    </string>
+                    <key>developer</key>
+                    <string>%MUNKI_DEVELOPER%</string>
+                    <key>display_name</key>
+                    <string>%NAME%</string>
+                    <key>minimum_os_version</key>
+                    <string>10.8.0</string>
+                    <key>name</key>
+                    <string>%NAME%</string>
+                </dict>
+            </dict>
+        </dict>
+    </array>
+</dict>
+</plist>
