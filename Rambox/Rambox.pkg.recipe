@@ -11,7 +11,7 @@
 	<key>Input</key>
 	<dict>
 		<key>BUNDLE_ID</key>
-		<string>com.saenzramiro.rambox</string>
+		<string>com.grupovrs.ramboxce</string>
 		<key>NAME</key>
 		<string>Rambox</string>
 	</dict>
