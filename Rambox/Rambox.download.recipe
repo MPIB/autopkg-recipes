@@ -2,33 +2,42 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Comment</key>
-	<string>Created with Recipe Robot v1.0.5 (https://github.com/homebysix/recipe-robot)</string>
 	<key>Description</key>
-	<string>Downloads the latest version of Rambox.</string>
+	<string>Downloads the latest version of Rambox stable release from Github</string>
 	<key>Identifier</key>
 	<string>com.github.mpib.download.Rambox</string>
 	<key>Input</key>
 	<dict>
-		<key>DOWNLOAD_URL</key>
-		<string>https://getrambox.herokuapp.com/download/osx</string>
-		<key>NAME</key>
-		<string>Rambox</string>
+		<key>PRERELEASE</key>
+		<string></string>
+		<key>REGEX</key>
+		<string>.*-mac.dmg</string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>1.0.0</string>
 	<key>Process</key>
 	<array>
 		<dict>
+			<key>Processor</key>
+			<string>GitHubReleasesInfoProvider</string>
+			<key>Arguments</key>
+			<dict>
+				<key>github_repo</key>
+				<string>ramboxapp/community-edition</string>
+				<key>include_prereleases</key>
+				<string>%PRERELEASE%</string>
+				<key>asset_regex</key>
+				<string>%REGEX%</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
 			<key>Arguments</key>
 			<dict>
 				<key>filename</key>
-				<string>%NAME%.dmg</string>
-				<key>url</key>
-				<string>%DOWNLOAD_URL%</string>
+				<string>Rambox-%version%.dmg</string>
 			</dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
 		</dict>
 		<dict>
 			<key>Processor</key>
