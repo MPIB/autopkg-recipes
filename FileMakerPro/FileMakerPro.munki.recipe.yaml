@@ -1,0 +1,29 @@
+Description: Import full app for FileMaker pro 19+
+Identifier: com.github.mpib.recipes.munki.FileMakerPro
+
+Input:
+  NAME: FileMaker Pro
+  MAJOR_VERSION: "19"
+  MUNKI_CATEGORY: Office
+  MUNKI_REPO_SUBDIR: apps/filemaker
+  pkginfo:
+    catalog: testing
+    category: '%MUNKI_CATEGORY%'
+    display_name: '%NAME%'
+    name: '%NAME%'
+    developer: Claris
+    description: >
+      This package installs the latest full version of FileMaker Pro. <br><br>
+      <b>Note</b> that this is not free software and you need an activation key
+      to get full functionality.
+MinimumVersion: '2.3'
+ParentRecipe: com.github.mpib.recipes.download.FileMakerPro
+Process:
+  - Processor: DmgCreator
+    Arguments:
+      dmg_root: '%RECIPE_CACHE_DIR%/%NAME%/FileMaker Pro.app'
+      dmg_path: '%RECIPE_CACHE_DIR%/%NAME%.dmg'
+  - Processor: MunkiImporter
+    Arguments:
+      pkg_path: '%dmg_path%'
+      repo_subdirectory: '%MUNKI_REPO_SUBDIR%'
